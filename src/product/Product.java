@@ -1,5 +1,6 @@
 package product;
 
+
 public class Product {
   private static int ID_ITERATOR = 1000;
 
@@ -10,11 +11,13 @@ public class Product {
   private int id;
   private String name;
   private double baseCost;
+  public long creationTimestamp;
 
   public Product (String name, double baseCost) {
     this.id = Product.getNextId();
     this.name = name;
     this.baseCost = baseCost;
+    this.creationTimestamp = System.currentTimeMillis();
   }
 
   public int id() {
@@ -35,6 +38,10 @@ public class Product {
 
   public void setBaseCost(double baseCost) {
     this.baseCost = baseCost;
+  }
+
+  public long getCreationTimeStamp(){
+    return creationTimestamp;
   }
 
   @Override
