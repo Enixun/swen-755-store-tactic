@@ -18,10 +18,10 @@ public class Order {
   }
 
   public String toProtocol() {
-    return (
-      "Order" + "\n" +
-      products.toString() + "\n" +
-      Order.protocolTerminator
-    );
+    String orderProtocol = "Order\n";
+    for (Product p : products ) {
+      orderProtocol = orderProtocol.concat(p.toString() + "\n");
+    }
+    return orderProtocol + Order.protocolTerminator;
   }
 }
