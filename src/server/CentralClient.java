@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import Availability.TimeStampManager;
 import order.Order;
 import product.Product;
 
@@ -52,10 +53,15 @@ public class CentralClient {
 
   public static void main(String[] args) {
     CentralClient client = new CentralClient();
+    TimeStampManager ts = new TimeStampManager();
+
     Order o = new Order();
     o.addProduct(new Product("Milk", 2.49));
     o.addProduct(new Product("Eggs", 4.49));
     o.addProduct(new Product("Bread", 3.49));
+    
+    ts.checkProductOrder(o);
+
     client.sendOrder(o);
     client.disconnect();
   }
