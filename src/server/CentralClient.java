@@ -10,19 +10,15 @@ import order.Order;
 import product.Product;
 
 public class CentralClient {
+  private String host;
+  private int port;
   private Socket client;
   private BufferedReader reader;
   private PrintWriter writer;
 
   public CentralClient () {
-    try {
-      client = new Socket("localhost", 8080);
-      reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-      writer = new PrintWriter(client.getOutputStream(), true);
-    } catch (IOException ioe) {
-      System.out.println("Unable to create CentralClient");
-      ioe.printStackTrace();
-    }
+    host = "localhost";
+    port = 8080;
   }
 
   public void sendOrder(Order o) {
@@ -31,7 +27,18 @@ public class CentralClient {
       System.out.println(reader.readLine());
     } catch (IOException ioe) {
       System.err.println("Unable to read response from sendProduct");
-      ioe.printStackTrace();
+      // ioe.printStackTrace();
+    }
+  }
+
+  public void connect() {
+    try {
+      client = new Socket(host, port);
+      reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+      writer = new PrintWriter(client.getOutputStream(), true);
+    } catch (IOException ioe) {
+      System.out.println("Unable to create CentralClient. Skipping...");
+      // ioe.printStackTrace();
     }
   }
 

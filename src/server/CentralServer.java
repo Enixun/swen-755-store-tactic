@@ -72,7 +72,7 @@ public class CentralServer {
     try {
       socket.close();
     } catch (Exception e) {
-      System.err.println("Unable to stop the server.");
+      System.err.println("Error stopping...");
       e.printStackTrace();
     }
   }
@@ -80,7 +80,7 @@ public class CentralServer {
   public static void main(String[] args) throws InterruptedException {
     CentralServer cs = new CentralServer();
     cs.start();
-    Thread.sleep(10000);
+    Thread.sleep(5000);
     cs.stop();
   }
 }
